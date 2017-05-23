@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [[ $# != 1 ]]; then
+   echo "Usage ./run <domain>"
+   exit 1
+fi
+
+./dehydrated -c -d $1 -t dns-01 -k 'hooks/cloudflare/hook.py'
+
