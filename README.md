@@ -31,7 +31,7 @@ For Python 2
 Create config:
 
     echo export CF_EMAIL=email > config
-    export CF_KEY=key >> config
+    echo export CF_KEY=key >> config
 
 Create cert:
 
