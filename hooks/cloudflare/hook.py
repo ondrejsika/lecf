@@ -181,6 +181,8 @@ def delete_all_txt_records(args):
     for i in range(0, len(args), X):
         delete_txt_record(args[i:i+X])
 
+def startup_hook(args):
+    return
 
 def exit_hook(args):
     return
@@ -193,11 +195,12 @@ def main(argv):
         'deploy_cert'     : deploy_cert,
         'unchanged_cert'  : unchanged_cert,
         'invalid_challenge': invalid_challenge,
+        'startup_hook': startup_hook,
         'exit_hook': exit_hook
     }
-    logger.info(" + CloudFlare hook executing: {0}".format(argv[0]))
-    ops[argv[0]](argv[1:])
-
+    if argv[0] in ops:
+        logger.info(" + CloudFlare hook executing: {0}".format(argv[0]))
+        ops[argv[0]](argv[1:])
 
 if __name__ == '__main__':
     main(sys.argv[1:])
