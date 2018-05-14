@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-if [[ $# != 1 ]]; then
-   echo "Usage ./run <domain>"
+if [[ $# -lt 1 ]]; then
+   echo "Usage ./run -d <domain> [ -d <domain> ...]"
    exit 1
 fi
 
-./dehydrated -c -d $1 -t dns-01 -k 'hooks/cloudflare/hook.py'
+./dehydrated -c -t dns-01 -k 'hooks/cloudflare/hook.py' $@
 
